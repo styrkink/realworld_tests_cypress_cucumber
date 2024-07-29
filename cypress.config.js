@@ -10,10 +10,14 @@ module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   video: false,
   reporterOptions: {
-  charts: true,
-  reportPageTitle: 'Cypress Inline Reporter',
-  embeddedScreenshots: true,
-  inlineAssets: true,
+    reportDir: 'cypress/reports',
+    reportFilename: 'report',
+    charts: true,
+    reportPageTitle: 'Cypress Inline Reporter',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    html: false,
+    json: true
 
   },
   e2e: {
