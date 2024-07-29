@@ -1,0 +1,43 @@
+name: Cypress+Cucumber tests and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'lts/*'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests with Cucumber
+        run: npm test
+        env:
+          CI: true
+
+      - name: Generate HTML report
+        run: npx mochawesome-merge cypress/reports/*.json | npx mochawesome-report-generator --reportDir cypress/reports/html
+        env:
+          CI: true
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./cypress/reports/html
+          publish_branch: gh-pages
