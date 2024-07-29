@@ -35,10 +35,17 @@ jobs:
       - name: Clean previous reports
         run: rm -rf cypress/reports/html
 
+      - name: Check for JSON report files
+        run: |
+          if [ -z "$(ls -A cypress/reports/*.json 2>/dev/null)" ]; then
+            echo "No JSON report files found!";
+            exit 1;
+          fi
+
       - name: Merge and generate HTML report
         run: |
-          npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json
-          npx marge cypress/reports/merged-report.json -o cypress/reports/html
+          npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json || exit 1
+          npx marge cypress/reports/merged-report.json -o cypress/reports/html || exit 1
         env:
           CI: true
 
