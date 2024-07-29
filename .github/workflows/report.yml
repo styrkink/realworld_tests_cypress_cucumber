@@ -1,4 +1,4 @@
-name: Cypress+Cucumber tests and Deploy to GitHub Pages
+name: Cypress Tests and Deploy to GitHub Pages
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'lts/*'
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install
@@ -29,8 +29,16 @@ jobs:
         env:
           CI: true
 
-      - name: Generate HTML report
-        run: npx mochawesome-merge cypress/reports/*.json | npx mochawesome-report-generator --reportDir cypress/reports/html
+      - name: List report files
+        run: ls -la cypress/reports
+
+      - name: Clean previous reports
+        run: rm -rf cypress/reports/html
+
+      - name: Merge and generate HTML report
+        run: |
+          npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json
+          npx marge cypress/reports/merged-report.json -o cypress/reports/html
         env:
           CI: true
 

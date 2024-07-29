@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+    "merge-reports": "npx mochawesome-merge cypress/reports/*.json > cypress/reports/merged-report.json",
+    "generate-report": "npx marge cypress/reports/merged-report.json -o cypress/reports/html"
   },
   "keywords": [],
   "author": "",
