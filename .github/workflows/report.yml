@@ -1,15 +1,12 @@
-name: Cypress Tests and Deploy to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,18 +26,30 @@ jobs:
         env:
           CI: true
 
-      - name: List report files
+      - name: Check and List HTML report files
         run: |
           echo "Listing report files..."
-          ls -la cypress/reports || echo "cypress/reports directory does not exist"
+          ls -la cypress/reports/html || echo "cypress/reports/html directory does not exist"
+          echo "Checking for HTML report files..."
+          if [ -z "$(ls -A cypress/reports/html/*.html 2>/dev/null)" ]; then
+            echo "No HTML report files found!"
+            exit 1
+          fi
 
-      - name: Clean previous reports
-        run: rm -rf cypress/reports/html
+      - name: Rename report.html to index.html
+        run: mv cypress/reports/html/report.html cypress/reports/html/index.html
+
+      - name: Add .nojekyll file
+        run: echo > cypress/reports/html/.nojekyll
 
       - name: Deploy to GitHub Pages
-        if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./cypress/reports
+          publish_dir: ./cypress/reports/html
           publish_branch: gh-pages
+
+      - name: Verify Deployment
+        run: |
+          echo "Listing deployed files..."
+          ls -la ./cypress/reports/html || echo "No files deployed"
