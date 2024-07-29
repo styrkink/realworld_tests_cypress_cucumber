@@ -13,8 +13,8 @@ module.exports = defineConfig({
     reportFilename: 'report',
     quiet: true,
     overwrite: false,
-    html: false,
-    json: true
+    html: true
+    
 
   },
   e2e: {
