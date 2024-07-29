@@ -8,14 +8,11 @@ const createEsbuildPlugin = require('@badeball/cypress-cucumber-preprocessor/esb
 module.exports = defineConfig({
 
   reporter: 'cypress-mochawesome-reporter',
-  video: false,
   reporterOptions: {
     reportDir: 'cypress/reports',
     reportFilename: 'report',
-    charts: true,
-    reportPageTitle: 'Cypress Inline Reporter',
-    embeddedScreenshots: true,
-    inlineAssets: true,
+    quiet: true,
+    overwrite: false,
     html: false,
     json: true
 
