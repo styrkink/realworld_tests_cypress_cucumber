@@ -11,4 +11,4 @@ export const article = {
   summary: faker.lorem.sentence(),
   description: faker.lorem.paragraph(),
   tag: faker.lorem.word(),
-}
+};

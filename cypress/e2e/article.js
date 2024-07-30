@@ -35,8 +35,7 @@ When(
     if (field1 !== "summary" && field2 !== "summary" && field3 !== "summary") {
       cy.get(articlePage.articleSummaryField).clear();
     }
-    if (field1 !== "description" && field2 !== "description" && field3 !== "description"
-    ) {
+    if (field1 !== "description" && field2 !== "description" && field3 !== "description") {
       cy.get(articlePage.articleDescriptionField).clear();
     }
     if (field1 !== "tag" && field2 !== "tag" && field3 !== "tag") {
