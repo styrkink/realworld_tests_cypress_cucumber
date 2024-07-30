@@ -21,14 +21,12 @@ cd your-repo`
 
 ## Steps to Launch
 ### 1. Run Cypress+Cucumber tests in headed mode
-`npx cypress open`
+`npm run cypress:open`
 ### 2. Run Cypress+Cucumber tests in headless mode
-`npm run test`
-### 3. Run in different browsers
-`npm run test:chromium` - for chrome
-`npm run test:firefox` - for firefox
-
+`npm run cypress:test`
+### 3. Run with custom config
+`npm run cypress:custom`
 
 ## Steps to view the report
 ### 1. Run with cypress report
-`npm run test:cloud`
+`npm run report`
