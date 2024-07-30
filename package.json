@@ -1,5 +1,5 @@
 {
-  "name": "test_cucumber",
+  "name": "realworld_tests_cypress_cucumber",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -8,9 +8,9 @@
     "generate-report": "npx marge cypress/reports/merged-report.json -o cypress/reports/html"
   },
   "keywords": [],
-  "author": "",
+  "author": "styrkink",
   "license": "ISC",
-  "description": "",
+  "description": "this is the test task for cypress and cucumber tests",
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^20.1.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.2",

@@ -31,5 +31,8 @@ module.exports = defineConfig({
     specPattern: 'cypress/e2e/**/*.feature',
     supportFile: 'cypress/support/e2e.js',
     baseUrl: 'https://conduit.realworld.how/',
+    viewportWidth: 1280,
+    viewportHeight: 720,
+    defaultCommandTimeout: 6000
   },
 });

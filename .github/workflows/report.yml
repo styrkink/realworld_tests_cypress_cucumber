@@ -24,18 +24,28 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests with Cucumber
-        run: npm test
+      - name: Run Cypress tests with default config
+        run: npx cypress run --config-file cypress.config.js
         env:
           CI: true
 
-      - name: List report files
+      - name: List default report files
         run: |
-          echo "Listing report files..."
+          echo "Listing default report files..."
           ls -la cypress/reports || echo "cypress/reports directory does not exist"
 
-      - name: Clean previous reports
-        run: rm -rf cypress/reports/html
+      - name: Clean previous custom reports
+        run: rm -rf cypress/reports/custom
+
+      - name: Run Cypress tests with custom config
+        run: npx cypress run --config-file cypress.config.custom.js
+        env:
+          CI: true
+
+      - name: List custom report files
+        run: |
+          echo "Listing custom report files..."
+          ls -la cypress/reports/custom || echo "cypress/reports/custom directory does not exist"
 
       - name: Deploy to GitHub Pages
         if: success()
