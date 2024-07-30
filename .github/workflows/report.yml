@@ -32,13 +32,10 @@ jobs:
       - name: List default report files
         run: |
           echo "Listing default report files..."
-          ls -la cypress/reports || echo "cypress/reports directory does not exist"
-
-      - name: Clean previous custom reports
-        run: rm -rf cypress/reports/custom
+          ls -la cypress/reports/default || echo "cypress/reports/default directory does not exist"
 
       - name: Run Cypress tests with custom config
-        run: npx cypress run --config-file cypress.config.1280x720.js
+        run: npx cypress run --config-file cypress.config.custom.js
         env:
           CI: true
 
@@ -53,4 +50,19 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./cypress/reports
+          publish_branch: gh-pages
+
+      - name: Combine reports
+        run: |
+          mkdir -p cypress/reports/combined
+          cp -r cypress/reports/default/* cypress/reports/combined/
+          cp -r cypress/reports/custom/* cypress/reports/combined/
+          ls -la cypress/reports/combined || echo "cypress/reports/combined directory does not exist"
+          
+      - name: Deploy combined reports to GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./cypress/reports/combined
           publish_branch: gh-pages
