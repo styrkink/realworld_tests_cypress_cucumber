@@ -13,3 +13,9 @@ Scenario: Add to favorite article as authorised user
   And I go to my profile
   And I open the favorite tab
   Then I should see the article in favorites
+
+Scenario: Follow author as an unauthorised user
+  Given I open the main page
+  When I click on an author's name
+  And I click the follow button
+  Then I should be redirected to the register page

@@ -30,6 +30,14 @@ When('I open the global feed tab', () => {
   mainPage.openGlobalFeedTab();
 });
 
+When('I click on an author\'s name', () => {
+  mainPage.clickOnAuthorName();
+});
+
+When('I click the follow button', () => {
+  cy.get('button.btn.btn-sm').contains('Follow').click();
+});
+
 When('I add an article to favorite', () => {
   mainPage.addToFavorite();
 });

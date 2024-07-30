@@ -7,6 +7,7 @@ export class MainPage {
     favouriteButton = ":nth-child(2) > .article-meta > .btn";
     tagList = ".tag-list";
     articlePreview = ".article-preview";
+    authorName = ".article-meta a.author";
   
     navigate() {
       cy.visit("/");
@@ -19,6 +20,10 @@ export class MainPage {
     clickSignInButton() {
       cy.get(this.signInButton).click({ force: true });
     }
+
+    clickOnAuthorName() {
+      cy.get(this.authorName).first().click();
+    }
   
     addToFavorite() {
       cy.get(this.favouriteButton).click({ force: true });
@@ -30,6 +35,10 @@ export class MainPage {
   
     goToProfile() {
       cy.get(this.userAvatar).click({ force: true });
+    }
+
+    createNewArticle() {
+      cy.get('a').contains('New Article').click({ force: true });
     }
   
     clickRandomTag() {

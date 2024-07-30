@@ -5,7 +5,6 @@
   "scripts": {
     "cypress:test": "npx cypress run",
     "cypress:open": "npx cypress open",
-    "cypress:run:headed": "npx cypress run --headed",
     "cypress:run:spec": "npx cypress run --spec",
     "cypress:run:chrome": "npx cypress run --chrome",
     "cypress:custom": "npx cypress run --config-file cypress.config.1280x720.js",
