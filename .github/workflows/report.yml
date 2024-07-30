@@ -35,7 +35,7 @@ jobs:
           ls -la cypress/reports/default || echo "cypress/reports/default directory does not exist"
 
       - name: Run Cypress tests with custom config
-        run: npx cypress run --config-file cypress.config.custom.js
+        run: npx cypress run --config-file cypress.config.1280х720.js
         env:
           CI: true
 
