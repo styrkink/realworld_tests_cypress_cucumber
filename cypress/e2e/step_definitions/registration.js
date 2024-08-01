@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { MainPage } from "./pages/main.page";
-import { RegistrationPage } from "./pages/registration.page";
-import { user } from "../helpers/helper";
+import { MainPage } from "../pages/main.page";
+import { RegistrationPage } from "../pages/registration.page";
+import { user } from "../../helpers/helper";
 
 const mainPage = new MainPage();
 const registrationPage = new RegistrationPage();

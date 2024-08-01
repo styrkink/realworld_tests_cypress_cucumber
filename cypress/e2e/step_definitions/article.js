@@ -1,10 +1,10 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { article } from "../helpers/helper";
-import { ArticlePage } from "./pages/article.page";
-import { MainPage } from "./pages/main.page";
-import { LoginPage } from "./pages/login.page";
+import { article } from "../../helpers/helper";
+import { ArticlePage } from "../pages/article.page";
+import { MainPage } from "../pages/main.page";
+import { LoginPage } from "../pages/login.page";
 
-const credentials = require("../fixtures/credentials.json");
+const credentials = require("../../fixtures/credentials.json");
 const mainPage = new MainPage();
 const loginPage = new LoginPage();
 const articlePage = new ArticlePage();
@@ -44,11 +44,11 @@ When(
   }
 );
 
-Then("the article is not published", () => {
+Then("I should stay on the same page", () => {
   cy.url().should("include", "/editor");
 });
 
-Then("the article is published", () => {
+Then("I redirected to the article page rewiew page", () => {
   cy.url().should("include", "/article");
   cy.get("a").contains(" Edit Article").should("be.visible");
   cy.get("button").contains(" Delete Article").should("be.visible");

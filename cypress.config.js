@@ -19,13 +19,21 @@ module.exports = defineConfig({
       });
 
       on('file:preprocessor', bundler);
-      await addCucumberPreprocessorPlugin(on, config);
+      await addCucumberPreprocessorPlugin(on, config, {
+        stepDefinitions: [
+          'cypress/e2e/step_definitions/[filepath].js',
+          'cypress/e2e/[filepath]/**/*.js',
+          'cypress/e2e/[filepath].js',
+          'cypress/support/step_definitions/**/*.js',
+        ]
+      });
       require('cypress-mochawesome-reporter/plugin')(on);
 
       return config;
     },
-    specPattern: 'cypress/e2e/**/*.feature',
+    specPattern: 'cypress/e2e/features/**/*.feature',
     supportFile: 'cypress/support/e2e.js',
     baseUrl: 'https://conduit.realworld.how/',
+    
   },
 });

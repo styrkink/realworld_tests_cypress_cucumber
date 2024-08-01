@@ -1,9 +1,9 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import { LoginPage } from "./pages/login.page";
-import { MainPage } from "./pages/main.page";
-import { user } from "../helpers/helper";
+import { LoginPage } from "../../e2e/pages/login.page";
+import { MainPage } from "../../e2e/pages/main.page";
+import { user } from "../../helpers/helper";
 
-const credentials = require("../fixtures/credentials.json");
+const credentials = require("../../fixtures/credentials.json");
 const mainPage = new MainPage();
 const loginPage = new LoginPage();
 
