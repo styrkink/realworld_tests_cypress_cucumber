@@ -5,14 +5,14 @@ Scenario: Publish article without article title
   When I click the "New article" button
   And I fill the article "summary", "description" and "tag" fields
   And I click the "Publish article" button
-  Then the article is not published
+  Then I should stay on the same page
 
 Scenario: Publish article without article description
   Given I am logged in
   When I click the "New article" button
   And I fill the article "title", "summary" and "tag" fields
   And I click the "Publish article" button
-  Then the article is not published
+  Then I should stay on the same page
 
 Scenario: Publish article without article summary
   Given I am logged in
